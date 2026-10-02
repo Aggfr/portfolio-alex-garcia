@@ -19,7 +19,7 @@ This is a single-page portfolio with dedicated case-study pages for featured pro
 
 ```
 portfolio-alex-garcia/
-├── index.html                       # Home page — Approach, Lab (projects), About
+├── index.html                       # Home page — Approach, Lab (projects), About, Footer
 ├── proyecto-ai-assisted-builds.html # Case study: AI-assisted builds
 ├── proyecto-the-knot-worldwide.html # Case study: The Knot Worldwide
 ├── css/
@@ -29,6 +29,14 @@ portfolio-alex-garcia/
 ├── img/                              # Images used across all pages
 └── video/                            # Background and header video assets
 ```
+
+## Current Lab Projects
+
+| Project | Status |
+| --- | --- |
+| AI-assisted builds | Live case-study page (`proyecto-ai-assisted-builds.html`) |
+| The Knot Worldwide | Live case-study page (`proyecto-the-knot-worldwide.html`) |
+| Hellotickets | Listed in the Lab grid, detail page not built yet |
 
 ## Getting Started
 
@@ -56,6 +64,8 @@ Each case study is a standalone HTML page (see `proyecto-ai-assisted-builds.html
 1. Duplicate an existing `proyecto-*.html` file and update its content.
 2. Add a new card to the **Lab** section in `index.html`, linking to the new page.
 3. Drop any new images into `img/`.
+4. Reuse the shared `.project-footer` markup (wrapped in `.project-page` when it's not already inside a page using that container, as on the home page) so every page ends with the same footer.
+5. Update this README — Project Structure and Current Lab Projects — to reflect the change.
 
 ## Deployment
 
