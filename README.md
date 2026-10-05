@@ -12,7 +12,7 @@ This is a single-page portfolio with dedicated case-study pages for featured pro
 
 - **HTML5** — semantic markup, one file per page
 - **CSS3** — custom styles in a single stylesheet (`css/style.css`), no CSS framework
-- **Vanilla JavaScript** — no libraries, no bundler (`js/script.js`)
+- **Vanilla JavaScript** — no libraries, no bundler, split into focused files under `js/`
 - **Google Fonts** — Roboto, Roboto Condensed, Playfair Display
 
 ## Project Structure
@@ -25,9 +25,12 @@ portfolio-alex-garcia/
 ├── css/
 │   └── style.css                    # Global stylesheet
 ├── js/
-│   └── script.js                    # Particle background + interactions
+│   ├── liquid-film.js               # Animated shader background (home page)
+│   ├── liquid-carve-button.js       # Interactive "View project" button effect
+│   ├── header-cursor-video.js       # Cursor-scrubbed hero video on the home header
+│   └── main.js                      # Nav scroll state, reveal animations, modal wiring
 ├── img/                              # Images used across all pages
-└── video/                            # Background and header video assets
+└── video/                            # Header video + poster for the home page
 ```
 
 ## Current Lab Projects

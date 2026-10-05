@@ -1,7 +1,7 @@
 /* ============================================================
    Liquid Carve Button — Originkit
    Vanilla-JS port (no React / framer-motion) of the shared
-   component, applied to the "View project" CTAs in prueba-v2.
+   component, applied to the "View project" CTAs on the site.
 
    The component itself is generic: call enhance(el, cfg) on any
    button-like element and it injects the goo-filtered SVG overlay
