@@ -46,56 +46,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------
-     3. About paragraph: character-by-character opacity reveal
-        driven by scroll progress through the paragraph.
-        NOTE: every space must stay a plain ASCII space (code 32),
-        never a non-breaking space, or the paragraph cannot wrap.
+     3. Floating nav bar: transparent over the header, gains a
+        solid (blurred) background once the page is scrolled.
      ------------------------------------------------------------ */
-  var SPACE_CHAR = String.fromCharCode(32);
-  var aboutText = document.querySelector('[data-char-reveal]');
-  var aboutSection = document.querySelector('.pv-about');
-  var charSpans = [];
+  var navBar = document.querySelector('.nav-bar');
+  var NAV_SCROLL_THRESHOLD = 40;
 
-  if (aboutText) {
-    var raw = aboutText.textContent;
-    aboutText.textContent = '';
-    raw.split('').forEach(function (ch) {
-      var span = document.createElement('span');
-      span.className = 'pv-about-char';
-      span.textContent = ch === SPACE_CHAR ? SPACE_CHAR : ch;
-      aboutText.appendChild(span);
-      charSpans.push(span);
-    });
-  }
-
-  function updateCharReveal() {
-    if (!aboutText || !charSpans.length || !aboutSection) return;
-    var vh = window.innerHeight;
-
-    /* progress 0 -> 1 driven by how far we've scrolled through the
-       section's OWN scrollable range (its height minus one viewport),
-       not by the paragraph's own position. The paragraph sits inside
-       a sticky wrapper, so its on-screen position freezes once stuck —
-       tying progress to that would leave the reveal stuck mid-way on
-       short sections. Tying it to the section's scroll range instead
-       guarantees the text finishes revealing exactly as the section
-       runs out of scroll room, regardless of how tall the section is. */
-    var sectionRect = aboutSection.getBoundingClientRect();
-    var scrollable = aboutSection.offsetHeight - vh;
-    var progress;
-    if (scrollable <= 0) {
-      progress = sectionRect.top <= 0 ? 1 : 0;
-    } else {
-      progress = (-sectionRect.top) / scrollable;
-    }
-    progress = Math.max(0, Math.min(1, progress));
-
-    var total = charSpans.length;
-    charSpans.forEach(function (span, i) {
-      var charProgress = (progress * total - i);
-      var opacity = Math.max(0.2, Math.min(1, 0.2 + charProgress * 0.8));
-      span.style.opacity = opacity;
-    });
+  function updateNavBackground() {
+    if (!navBar) return;
+    navBar.classList.toggle('is-scrolled', window.scrollY > NAV_SCROLL_THRESHOLD);
   }
 
   /* ------------------------------------------------------------
@@ -133,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ticking = true;
     requestAnimationFrame(function () {
       updateMarquee();
-      updateCharReveal();
+      updateNavBackground();
       updateStack();
       ticking = false;
     });
