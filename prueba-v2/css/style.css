@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700|Playfair+Display:700,700i');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ============================================================
+   Base reset
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #0C0C0C;
+  color: #FFF;
+  font-family: 'Kanit', 'Roboto', sans-serif;
+}
+
+/* ============================================================
+   Shared with the real site: nav bar, header, particles
+   (copied as-is so this experiment looks consistent, but lives
+   entirely in its own file — editing this never touches the
+   real site's css/style.css)
+   ============================================================ */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #010101;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.nav-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.nav-bar a:hover {
+  transform: scale(1.2);
+}
+
+.nav-bar-ul li {
+  list-style: none;
+  text-align: center;
+}
+
+.nav-bar-ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+  margin: 0;
+}
+
+.header {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.header-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.header-role {
+  margin: 8px 0 40px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #FE8457;
+}
+
+.header h1 {
+  margin: 0;
+  color: #FFF;
+  font-family: Inter, 'Kanit', sans-serif;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.header-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background-color: #FE8457;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Reveal-on-scroll helper
+   ============================================================ */
+.pv-reveal {
+  opacity: 0;
+  transform: translate(var(--pv-x, 0), var(--pv-y, 24px));
+  transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-delay: var(--pv-delay, 0s);
+}
+
+.pv-reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ============================================================
+   Marquee section
+   ============================================================ */
+.pv-marquee {
+  background-color: #0C0C0C;
+  padding: 96px 0 40px;
+  overflow: hidden;
+}
+
+.pv-marquee-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  will-change: transform;
+}
+
+.pv-marquee-row:last-child {
+  margin-bottom: 0;
+}
+
+.pv-marquee-tile {
+  flex: 0 0 auto;
+  width: 420px;
+  height: 270px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pv-marquee-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .pv-marquee-tile {
+    width: 260px;
+    height: 168px;
+  }
+}
+
+/* ============================================================
+   Services / Approach section
+   ============================================================ */
+.pv-services {
+  background-color: #FFFFFF;
+  color: #0C0C0C;
+  border-radius: 48px 48px 0 0;
+  padding: 100px 24px;
+}
+
+@media (min-width: 900px) {
+  .pv-services {
+    border-radius: 60px 60px 0 0;
+    padding: 128px 60px;
+  }
+}
+
+.pv-services-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 12vw, 160px);
+  color: #0C0C0C;
+  margin: 0 0 72px;
+}
+
+.pv-services-list {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.pv-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(12, 12, 12, 0.15);
+}
+
+.pv-service-item:last-child {
+  border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+}
+
+.pv-service-number {
+  flex: 0 0 auto;
+  font-weight: 900;
+  line-height: 0.9;
+  font-size: clamp(3rem, 10vw, 110px);
+  color: #0C0C0C;
+}
+
+.pv-service-body h3 {
+  margin: 0 0 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: clamp(1rem, 2.2vw, 1.8rem);
+}
+
+.pv-service-body p {
+  margin: 0;
+  max-width: 640px;
+  font-weight: 300;
+  line-height: 1.6;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  opacity: 0.65;
+}
+
+@media (max-width: 700px) {
+  .pv-service-item { gap: 20px; }
+}
+
+/* ============================================================
+   Projects / Lab section (sticky stacking cards)
+   ============================================================ */
+.pv-projects {
+  position: relative;
+  background-color: #0C0C0C;
+  border-radius: 48px 48px 0 0;
+  margin-top: -40px;
+  z-index: 2;
+  padding: 100px 24px 60px;
+}
+
+@media (min-width: 900px) {
+  .pv-projects {
+    border-radius: 60px 60px 0 0;
+    margin-top: -56px;
+    padding: 128px 60px 100px;
+  }
+}
+
+.pv-projects-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 12vw, 160px);
+  margin: 0 0 64px;
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.pv-stack {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pv-stack-wrap {
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.pv-stack-wrap:last-child {
+  height: auto;
+  padding-bottom: 10vh;
+}
+
+.pv-stack-card {
+  position: sticky;
+  top: 96px;
+  width: 100%;
+  border-radius: 32px;
+  border: 2px solid #D7E2EA;
+  background-color: #0C0C0C;
+  padding: 24px;
+  will-change: transform;
+  transform-origin: top center;
+}
+
+@media (min-width: 900px) {
+  .pv-stack-card {
+    border-radius: 48px;
+    padding: 32px;
+  }
+}
+
+.pv-stack-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.pv-stack-number {
+  font-weight: 900;
+  line-height: 0.9;
+  font-size: clamp(2.5rem, 7vw, 90px);
+  color: #D7E2EA;
+}
+
+.pv-stack-meta {
+  flex: 1 1 auto;
+  min-width: 160px;
+}
+
+.pv-stack-category {
+  display: block;
+  color: rgba(215, 226, 234, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.pv-stack-name {
+  margin: 0;
+  color: #D7E2EA;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+}
+
+.pv-ghost-btn {
+  flex: 0 0 auto;
+  display: inline-block;
+  border: 2px solid #D7E2EA;
+  border-radius: 999px;
+  color: #D7E2EA;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 12px 28px;
+  transition: background-color 0.2s ease;
+}
+
+.pv-ghost-btn:hover {
+  background-color: rgba(215, 226, 234, 0.1);
+}
+
+.pv-stack-grid {
+  display: flex;
+  gap: 12px;
+}
+
+.pv-stack-col-1 {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pv-stack-col-2 {
+  flex: 1 1 60%;
+}
+
+.pv-stack-grid img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+@media (min-width: 900px) {
+  .pv-stack-grid img { border-radius: 36px; }
+}
+
+.pv-stack-col-1 img:first-child {
+  height: clamp(110px, 16vw, 200px);
+}
+
+.pv-stack-col-1 img:last-child {
+  height: clamp(140px, 22vw, 290px);
+}
+
+.pv-stack-col-2 img {
+  /* Match col-1's actual rendered height (two stacked images + gap)
+     explicitly, instead of height:100%. height:100% against an
+     indefinite flex-item parent falls back to the image's own
+     intrinsic aspect ratio, so a "squarer" screenshot inflates the
+     whole row and leaves a gap under col-1's fixed-height images. */
+  height: calc(clamp(110px, 16vw, 200px) + clamp(140px, 22vw, 290px) + 12px);
+}
+
+@media (max-width: 700px) {
+  .pv-stack-grid { flex-direction: column; }
+  .pv-stack-col-1 { flex-direction: row; }
+  .pv-stack-col-2 img { height: auto; min-height: 220px; }
+}
+
+/* ============================================================
+   About section
+   ============================================================ */
+.pv-about {
+  position: relative;
+  background-color: #0C0C0C;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 100px 24px 0;
+  overflow: hidden;
+}
+
+.pv-about-inner {
+  position: sticky;
+  top: 18vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pv-about-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  background: radial-gradient(circle at 35% 35%, rgba(215, 226, 234, 0.9), rgba(100, 105, 115, 0.15) 70%);
+  box-shadow: 0 0 60px rgba(187, 204, 215, 0.25);
+}
+
+/* Gentle ambient drift, echoing the floating particles elsewhere on
+   the page. Starts only after the scroll-in reveal (.pv-reveal /
+   .is-visible, driven by opacity+transform transitions) has settled
+   at translate(0,0) — each keyframe's 0%/100% match that resting
+   state exactly, so the animation picks up with no visible jump. */
+@keyframes pv-blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(var(--blob-dx, 14px), var(--blob-dy, -18px)) scale(1.06); opacity: 0.85; }
+}
+
+.pv-about-blob-1 {
+  width: 160px; height: 160px; top: 6%; left: 3%;
+  --blob-dx: 18px; --blob-dy: -22px;
+  animation: pv-blob-float 9s ease-in-out 1.6s infinite;
+}
+.pv-about-blob-2 {
+  width: 120px; height: 120px; bottom: 10%; left: 7%;
+  --blob-dx: -14px; --blob-dy: 18px;
+  animation: pv-blob-float 11s ease-in-out 2.1s infinite;
+}
+.pv-about-blob-3 {
+  width: 160px; height: 160px; top: 6%; right: 3%;
+  --blob-dx: -18px; --blob-dy: -16px;
+  animation: pv-blob-float 10s ease-in-out 1.9s infinite;
+}
+.pv-about-blob-4 {
+  width: 140px; height: 140px; bottom: 10%; right: 6%;
+  --blob-dx: 15px; --blob-dy: 20px;
+  animation: pv-blob-float 12.5s ease-in-out 2.4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-about-blob-1, .pv-about-blob-2, .pv-about-blob-3, .pv-about-blob-4 {
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .pv-about-blob { display: none; }
+}
+
+.pv-about-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 8vw, 100px);
+  margin: 0 0 32px;
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.pv-about-text {
+  max-width: 620px;
+  width: 100%;
+  color: #D7E2EA;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  text-align: center;
+  margin: 0 auto 56px;
+}
+
+.pv-about-char {
+  opacity: 0.2;
+  transition: opacity 0.1s linear;
+}
+
+.pv-contact-btn {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 16px 44px;
+  background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
+  box-shadow: 0 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset;
+  outline: 2px solid #fff;
+  outline-offset: -3px;
+  color: #fff;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.pv-contact-btn:hover {
+  transform: scale(1.04);
+  opacity: 0.92;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.pv-footer {
+  background-color: #0C0C0C;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 24px;
+  border-top: 1px solid rgba(215, 226, 234, 0.15);
+}
+
+.pv-footer-signature {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(215, 226, 234, 0.7);
+}
+
+.pv-footer-link {
+  color: #D7E2EA;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pv-footer-link:hover {
+  text-decoration: underline;
+}
