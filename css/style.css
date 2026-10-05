@@ -844,37 +844,6 @@ body {
   transform: translateX(4px);
 }
 
-.project-footer {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 32px 0;
-}
-
-.project-footer-signature {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.3em;
-  color: #FFF;
-}
-
-.project-footer-link {
-  color: #FFF;
-  font-size: 13px;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-  display: inline-block;
-}
-
-.project-footer-link:hover {
-  transform: scale(1.1);
-}
-
 /* Modal de detalle de sub-proyecto */
 .modal-overlay {
   display: none;
