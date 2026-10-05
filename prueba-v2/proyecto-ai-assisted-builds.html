@@ -256,7 +256,7 @@
         <div class="modal-header">
           <div>
             <h2 class="modal-title" id="modal-title-kg-braids">KG Braids</h2>
-            <p class="modal-subtitle">Add a short description of this project here: what it is, who it's for, and the problem it solves.</p>
+            <p class="modal-subtitle">Trenzas KG is a braiding and hair-styling studio in Lanzarote, offering braids, dreadlocks, styling and colour services.</p>
           </div>
           <button type="button" class="modal-close">Close</button>
         </div>
@@ -268,15 +268,15 @@
           </div>
           <div class="modal-meta-item">
             <span class="modal-meta-label">Responsibility</span>
-            <span class="modal-meta-value">Add responsibility here</span>
+            <span class="modal-meta-value">Design-to-Code Development</span>
           </div>
           <div class="modal-meta-item">
             <span class="modal-meta-label">Area</span>
-            <span class="modal-meta-value">Add area here</span>
+            <span class="modal-meta-value">Front-End Engineering</span>
           </div>
           <div class="modal-meta-item">
             <span class="modal-meta-label">Partners</span>
-            <span class="modal-meta-value">Add partners here</span>
+            <span class="modal-meta-value">Solo project</span>
           </div>
           <a href="https://github.com/Aggfr/trenzas-kg" class="modal-visit-link" target="_blank" rel="noopener noreferrer">Go to Github</a>
         </div>
@@ -342,22 +342,28 @@
 
         <div class="modal-body-grid">
           <div class="modal-body-left">
-            <p>Add a paragraph describing the context and goals of this project here. Explain what the starting point was and what needed to change.</p>
-            <p>Add a paragraph describing your process here: research, exploration, and the key decisions made along the way.</p>
-            <p>Add a paragraph describing the final result here and how it was rolled out.</p>
+            <p>Trenzas KG is a braiding and hair-styling studio in Lanzarote, offering braids, dreadlocks, styling and colour services. The project started from a Figma design the owner had created herself but had no way to bring online — there was no live site, so none of that design work was reaching anyone searching for a stylist. The goal was to turn that design into a real, working website: a pixel-accurate translation of the mockup into a fast, responsive site that could be put under version control, published, and linked from a portfolio.</p>
+            <p>I connected directly to the Figma file through its desktop plugin bridge and extracted the exact colours, type styles and spacing from the design, then built the site myself in plain HTML, CSS and JavaScript, with AI as a development partner throughout. Most of the process was iterative refinement across breakpoints — desktop, tablet and mobile were each adjusted independently, checking spacing, alignment and image placement against the live preview rather than guessing. The hero section went through several rounds: it started as a static image, then became an autoplaying video, before landing on its final interactive form.</p>
+            <p>Key decisions along the way:</p>
+            <ul>
+              <li>The hero uses a single continuous video of the model turning her head, with autoplay switched off — her orientation is instead driven by the visitor's cursor position, so she appears to turn and follow you as you move the mouse.</li>
+              <li>The gallery auto-advances on a timer but pauses the moment a visitor hovers or touches it, resuming shortly after.</li>
+              <li>Every visual change was verified directly against the files on disk before being confirmed, rather than assumed from a code diff.</li>
+            </ul>
+            <p>The result is a fast, fully responsive static site covering services, the studio's story, a gallery and a booking enquiry form, with a signature interactive hero as its centrepiece. The project was put under Git version control, pushed to a public GitHub repository, and deployed live via GitHub Pages — giving the studio both a shareable code history and a working public URL, ready to be linked from a portfolio.</p>
           </div>
           <div class="modal-body-right">
             <div class="modal-body-section">
               <span class="modal-body-section-label">Why it mattered</span>
-              <p>Add a short explanation of why this project was needed and what was at stake.</p>
+              <p>A finished design sitting in Figma has no reach — it can't be found, shared or booked from. The studio needed that design turned into something a browser could actually load, and needed the groundwork (version control, a public repository, hosting) to keep improving it safely afterwards instead of editing a single fragile copy of the site by hand.</p>
             </div>
             <div class="modal-body-section">
               <span class="modal-body-section-label">Key decision</span>
-              <p>Add the key decision that shaped this project and why it was made.</p>
+              <p>Rather than settling for a simple parallax effect or a crossfade between a handful of static photos, I chose to drive an actual continuous video with the cursor's position — scrubbing to the matching frame as the mouse moves, with no visible video controls. It took more iteration than the simpler alternatives, but it's the only approach where the motion is real rather than simulated, and it gives the site a distinctive, memorable interaction instead of a generic hero image.</p>
             </div>
             <div class="modal-body-section">
               <span class="modal-body-section-label">Outcome</span>
-              <p>Add a short summary of the outcome and what improved as a result.</p>
+              <p>Trenzas KG went from a design file with no way to reach anyone to a live, versioned website with its own public history on GitHub. The studio now has a shareable link, a working booking enquiry flow, and a codebase that can be safely updated going forward — and the project itself is ready to show as a piece of portfolio work.</p>
             </div>
           </div>
         </div>
@@ -385,7 +391,7 @@
 
         <div class="modal-scaled">
           <span class="modal-scaled-eyebrow">What scaled</span>
-          <p class="modal-scaled-text">Add a paragraph describing what parts of this project became reusable patterns or a foundation for future work.</p>
+          <p class="modal-scaled-text">The habit of extracting exact values straight from the Figma file and verifying every visual change directly against the files on disk, rather than trusting a diff, became the basis for the "Design Reviewer" workflow above — now reused as a repeatable design-to-code QA process on other projects.</p>
         </div>
       </div>
     </div>
