@@ -929,22 +929,15 @@ body {
 
 .modal-close {
   flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #FFF;
-  border: none;
-  font-size: 13px;
-  font-weight: 700;
-  font-family: 'Roboto', sans-serif;
-  padding: 10px 22px;
-  border-radius: 999px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  background: none;
+  font-family: inherit;
 }
 
-.modal-close:hover {
-  background-color: rgba(255, 255, 255, 0.16);
-  transform: scale(1.05);
-}
+/* Visual style and hover are handled by .pv-ghost-btn and
+   liquid-carve-button.js (same outlined pill + orange "liquid"
+   blob used by the Lab section's "View project" CTAs), so the
+   old flat background-color hover wash lives only in history. */
 
 .modal-meta {
   display: flex;
