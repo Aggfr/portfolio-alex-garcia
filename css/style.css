@@ -1000,7 +1000,8 @@ body {
 
 .modal-impact-text {
   margin: 0;
-  max-width: 380px;
+  flex: 1 1 320px;
+  max-width: 520px;
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6em;
@@ -1315,6 +1316,10 @@ img.modal-gallery-image {
   .modal-impact {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .modal-impact-text {
+    max-width: 100%;
   }
 
   .modal-process {
