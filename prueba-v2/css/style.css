@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:100,300,700|Playfair+Display:700,700i');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ============================================================
    Base reset
@@ -69,50 +70,123 @@ body {
   margin: 0;
 }
 
+/* ------------------------------------------------------------
+   Header — matches the Figma reference (node 3359:164, frame
+   "Desktop - 37", 1440x1024): a flush, full-height video bleeds
+   off the right edge (no card, no border, no radius) and the
+   copy block sits absolutely positioned at the frame's exact
+   coordinates (left: 78px, vertically centered). The Liquid
+   Film shader keeps animating underneath (fixed, z-index -1)
+   but stays hidden behind the header's flat background — it's
+   still visible once you scroll past the header.
+   ------------------------------------------------------------ */
 .header {
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0 24px;
+  background-color: #03040A;
+}
+
+.header-content {
+  position: absolute;
+  z-index: 3;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(600px, calc(100% - 48px));
 }
 
 @media (min-width: 700px) {
-  .header {
-    padding: 0 60px;
+  .header-content {
+    left: 60px;
+    width: min(600px, calc(100% - 120px));
+  }
+}
+
+@media (min-width: 1100px) {
+  .header-content {
+    left: 78px;
+    width: 600px;
   }
 }
 
 .header-name {
   margin: 0;
-  font-size: 16px;
-  font-weight: 700;
+  font-family: Inter, 'Kanit', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
   color: #FFF;
 }
 
 .header-role {
-  margin: 8px 0 40px;
-  font-size: 14px;
-  font-weight: 300;
-  color: #FE8457;
+  margin: 12px 0 0;
+  font-family: Inter, 'Kanit', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FE8558;
 }
 
 .header h1 {
-  margin: 0;
+  margin: 19px 0 0;
   color: #FFF;
   font-family: Inter, 'Kanit', sans-serif;
-  font-size: 80px;
+  font-size: clamp(32px, 6vw, 80px);
   font-weight: 500;
   line-height: normal;
+  width: 100%;
 }
 
-.header-content {
-  position: relative;
+/* ------------------------------------------------------------
+   Header visual: a full-bleed, full-height video whose frame
+   scrubs based on cursor position (ported from the Trenzas KG
+   header effect). Flush to the top-right corner, no frame —
+   its width follows height via the clip's native aspect ratio
+   (560:752, same ratio as the Figma placeholder's 762:1024).
+   ------------------------------------------------------------ */
+.header-visual {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 560 / 752;
+  overflow: hidden;
+}
+
+@media (max-width: 899px) {
+  .header-visual {
+    display: none;
+  }
+}
+
+.header-visual-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.6;
+}
+
+/* A second, independent Liquid Film instance (same shader, mounted
+   again by liquid-film.js — see mount()/boot()), layered ABOVE the
+   video but below the header text, dimmed and purely ambient (no
+   cursor reactivity, see the `hover: 0` override in liquid-film.js)
+   so it can't fight the video's own cursor-scrub effect or hurt
+   text legibility. Desktop-only, matching .header-visual's own
+   breakpoint — there's no video to layer over below 900px anyway. */
+.header-waves {
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  opacity: 0.2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .header-waves {
+    display: none;
+  }
 }
 
 .particles-container {
@@ -261,7 +335,12 @@ body {
    ============================================================ */
 .pv-projects {
   position: relative;
-  background-color: #0C0C0C;
+  /* No background-color here (unlike the marquee above it): lets
+     the Liquid Film shader (fixed, z-index -1) show through the
+     gaps around the sticky stack cards, same technique as the
+     About me section. The individual .pv-stack-card cards keep
+     their own solid background so the project content stays
+     fully legible. */
   border-radius: 48px 48px 0 0;
   margin-top: -40px;
   z-index: 2;
@@ -445,19 +524,24 @@ body {
      in the header show through here too, instead of the 4 static
      "blob" decorations this section used to paint over it. */
   position: relative;
-  min-height: 110vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  /* Centered (was flex-start + a sticky inner wrap pinned near the
+     top): the card now simply sits in the middle of the space
+     between the Lab section above and the footer below, instead of
+     being pinned to a fixed scroll offset. */
+  justify-content: center;
   text-align: center;
-  padding: 48px 24px 0;
+  /* Extra bottom padding so the card sits with noticeably more
+     breathing room above the footer than above (it's no longer
+     perfectly centered — more weight toward the top). */
+  padding: 64px 24px 240px;
   overflow: hidden;
 }
 
 .pv-about-inner {
-  position: sticky;
-  top: 18vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -489,10 +573,6 @@ body {
 @media (min-width: 700px) {
   .pv-about-card {
     max-width: 900px;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 48px;
     padding: 48px;
   }
 }
@@ -501,6 +581,20 @@ body {
   .pv-about-card {
     padding: 56px 64px;
     border-radius: 48px;
+  }
+}
+
+/* Only from here is there reliably enough width for the photo to
+   stretch to the full height of the title+text column and keep its
+   4:5 aspect ratio without squeezing the text into a narrow column
+   (verified: breaks below ~1100px). */
+@media (min-width: 1100px) {
+  .pv-about-card {
+    max-width: 1080px;
+    flex-direction: row;
+    align-items: stretch;
+    text-align: left;
+    gap: 48px;
   }
 }
 
@@ -520,6 +614,17 @@ body {
   }
 }
 
+@media (min-width: 1100px) {
+  .pv-about-photo-wrap {
+    /* No fixed width here: the flex item stretches to the height
+       of the title+text column (sibling), and aspect-ratio (4/5,
+       set in the base rule above) derives the width from that
+       height, so the photo stays proportional at any text length. */
+    width: auto;
+    height: auto;
+  }
+}
+
 .pv-about-photo {
   width: 100%;
   height: 100%;
@@ -531,6 +636,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Centers the heading+paragraph block vertically within its own
+     box. In the stacked mobile/tablet layout this box is exactly
+     as tall as its content, so it's a no-op there; in the 1100px+
+     row layout the box is stretched to match the photo's height,
+     so this is what actually centers the text against the photo. */
+  justify-content: center;
   text-align: center;
   min-width: 0;
 }
@@ -562,7 +673,7 @@ body {
   color: #D7E2EA;
   font-weight: 400;
   line-height: 1.7;
-  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
   margin: 0;
 }
 
@@ -579,7 +690,7 @@ body {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }

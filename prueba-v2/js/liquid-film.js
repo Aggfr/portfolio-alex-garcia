@@ -341,8 +341,8 @@
     color2: "#7621B0",
   };
 
-  function init() {
-    var root = document.getElementById("particles-container");
+  function mount(rootId, overrides) {
+    var root = document.getElementById(rootId);
     if (!root) return;
 
     var canvas = document.createElement("canvas");
@@ -360,8 +360,11 @@
     }
 
     // Matches the component's own defaults (speed/size/angle/flow/
-    // ripple/hover/reach) — only the palette is site-specific.
+    // ripple/hover/reach) — only the palette is site-specific. A
+    // caller can override any of these per mount() (e.g. hover: 0
+    // to make an instance purely ambient / non-interactive).
     var raw = { speed: 50, size: 147, angle: 73, flow: 200, ripple: 200, hover: 100, reach: 300 };
+    for (var k in overrides) { if (overrides.hasOwnProperty(k)) raw[k] = overrides[k]; }
     var v = {
       background: DEFAULTS.background,
       color1: DEFAULTS.color1,
@@ -520,9 +523,23 @@
     });
   }
 
+  function boot() {
+    mount("particles-container", {});
+
+    if (document.getElementById("header-waves") &&
+        window.matchMedia("(min-width: 900px)").matches) {
+      // Ambient only: hover 0 disables the cursor-chasing glow and
+      // the ripples it spawns (see render()'s "if (present &&
+      // v.hover > 0)" gate), so this copy never reacts to the
+      // mouse — it can't compete with the header video's own
+      // cursor-scrub effect, it just drifts on its own.
+      mount("header-waves", { hover: 0 });
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    init();
+    boot();
   }
 })();
