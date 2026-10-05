@@ -986,7 +986,7 @@ body {
 .modal-impact {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 32px;
   background: rgba(255, 255, 255, 0.04);
@@ -1001,7 +1001,6 @@ body {
 .modal-impact-text {
   margin: 0;
   flex: 1 1 320px;
-  max-width: 520px;
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6em;
