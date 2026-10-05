@@ -1242,6 +1242,14 @@ img.modal-gallery-image {
   aspect-ratio: 1.5 / 1;
 }
 
+/* Full-width product screenshots (e.g. the Freemium to Premium
+   solution shots): the default 2.2/1 frame crops too aggressively
+   for a near-square UI screenshot, so this keeps the same, gentler
+   1.5/1 crop used in two-column rows, just at full width. */
+.modal-gallery-image--tall {
+  aspect-ratio: 1.5 / 1;
+}
+
 .modal-scaled {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 32px;
