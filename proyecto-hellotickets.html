@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hellotickets | Alex Garcia</title>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <ul class="nav-bar-ul">
+        <li><a href="./index.html#approach">Approach</a></li>
+        <li><a href="./index.html#lab">Lab</a></li>
+        <li><a href="./index.html#schedule">About</a></li>
+      </ul>
+    </nav>
+
+    <main class="project-page">
+      <p class="project-intro">Add a short intro for this section here: what Hellotickets is and what kind of work this page covers.</p>
+
+      <img class="project-hero" src="./img/ht-ny-pass-page.png" alt="Hellotickets">
+
+      <div class="project-grid">
+        <div class="project-item">
+          <span class="project-item-eyebrow">Product design</span>
+          <h3 class="project-item-title">Hellotickets</h3>
+          <p class="project-item-desc">Add a short description of this project here: what it is, who it's for, and the problem it solves.</p>
+          <img class="project-item-preview" src="./img/ht-ny-pass-page.png" alt="Hellotickets">
+          <a href="#" class="project-item-more" data-modal-target="modal-overlay-hellotickets">View more</a>
+        </div>
+      </div>
+
+      <footer class="pv-footer">
+        <p class="pv-footer-signature">Designed with<br>love &hearts;</p>
+        <a href="https://www.linkedin.com/in/alejandro-garc%C3%ADa-garc%C3%ADa/?isSelfProfile=true" class="pv-footer-link" target="_blank" rel="noopener noreferrer">Linkedin</a>
+      </footer>
+    </main>
+
+    <!-- Modal: Hellotickets -->
+    <div class="modal-overlay" id="modal-overlay-hellotickets">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-hellotickets">
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="modal-title-hellotickets">Hellotickets</h2>
+            <p class="modal-subtitle">Add a short description of this project here: what it is, who it's for, and the problem it solves.</p>
+          </div>
+          <button type="button" class="modal-close pv-ghost-btn">Close</button>
+        </div>
+
+        <div class="modal-meta">
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Client</span>
+            <span class="modal-meta-value">Hellotickets · 2026</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Responsibility</span>
+            <span class="modal-meta-value">Add your responsibility here</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Area</span>
+            <span class="modal-meta-value">Product Design</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Partners</span>
+            <span class="modal-meta-value">Add partners here</span>
+          </div>
+        </div>
+
+        <div class="modal-impact">
+          <p class="modal-impact-text">Add a short summary of the measurable impact this project had for its users or the business.</p>
+          <div class="modal-impact-stats">
+            <div class="modal-impact-stat">
+              <span class="modal-impact-stat-value">+00%</span>
+              <span class="modal-impact-stat-label">Metric label</span>
+            </div>
+            <div class="modal-impact-stat">
+              <span class="modal-impact-stat-value">+00%</span>
+              <span class="modal-impact-stat-label">Metric label</span>
+            </div>
+          </div>
+        </div>
+
+        <img class="modal-hero" src="./img/ht-app-search-flow.png" alt="Hellotickets app search flow">
+
+        <div class="modal-body-grid">
+          <div class="modal-body-left">
+            <p>Add a paragraph describing the context and goals of this project here. Explain what the starting point was and what needed to change.</p>
+            <p>Add a paragraph describing your process here: research, exploration, and the key decisions made along the way.</p>
+            <p>Add a paragraph describing the final result here and how it was rolled out.</p>
+          </div>
+          <div class="modal-body-right">
+            <div class="modal-body-section">
+              <span class="modal-body-section-label">Why it mattered</span>
+              <p>Add a short explanation of why this project was needed and what was at stake.</p>
+            </div>
+            <div class="modal-body-section">
+              <span class="modal-body-section-label">Key decision</span>
+              <p>Add the key decision that shaped this project and why it was made.</p>
+            </div>
+            <div class="modal-body-section">
+              <span class="modal-body-section-label">Outcome</span>
+              <p>Add a short summary of the outcome and what improved as a result.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-gallery">
+          <div class="modal-gallery-item">
+            <img class="modal-gallery-image modal-gallery-image--tall" src="./img/ht-ny-pass-page.png" alt="New York Pass and other passes landing page">
+            <p class="modal-gallery-caption">Add a caption describing this screenshot</p>
+          </div>
+          <div class="modal-gallery-item">
+            <img class="modal-gallery-image modal-gallery-image--tall" src="./img/ht-seat-map.png" alt="Seat map and ticket selection for a theater show">
+            <p class="modal-gallery-caption">Add a caption describing this screenshot</p>
+          </div>
+        </div>
+
+        <div class="modal-scaled">
+          <span class="modal-scaled-eyebrow">What scaled</span>
+          <p class="modal-scaled-text">Add a paragraph describing what parts of this project became reusable patterns or a foundation for future work.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/liquid-carve-button.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var overlays = document.querySelectorAll('.modal-overlay');
+
+        function openModal(id) {
+          var overlay = document.getElementById(id);
+          if (!overlay) return;
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(overlay) {
+          overlay.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('[data-modal-target]').forEach(function (trigger) {
+          trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            openModal(trigger.getAttribute('data-modal-target'));
+          });
+        });
+
+        overlays.forEach(function (overlay) {
+          overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeModal(overlay);
+          });
+
+          var closeBtn = overlay.querySelector('.modal-close');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+              closeModal(overlay);
+            });
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            overlays.forEach(function (overlay) {
+              if (overlay.classList.contains('is-open')) closeModal(overlay);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
