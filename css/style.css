@@ -49,6 +49,7 @@ body {
   text-decoration: none;
   font-size: 12px;
   display: inline-block;
+  padding: 12px 0;
   transition: transform 0.2s ease;
 }
 
@@ -527,6 +528,7 @@ body {
 @media (max-width: 700px) {
   .pv-stack-grid { flex-direction: column; }
   .pv-stack-col-1 { flex-direction: row; }
+  .pv-stack-col-1 img { width: 50%; min-width: 0; }
   .pv-stack-col-2 img { height: auto; min-height: 220px; }
 }
 
