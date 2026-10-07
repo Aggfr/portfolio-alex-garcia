@@ -1062,7 +1062,13 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 32px;
-  background: rgba(255, 255, 255, 0.04);
+  /* Solid instead of translucent: the alpha-blended fill showed a
+     faint horizontal seam on some renderers (GPU tile-boundary
+     artifact unrelated to our markup -- verified no element here
+     has a border/shadow that could cause it). #141414 is the exact
+     rgba(255,255,255,0.04) over the modal's #0A0A0A background,
+     visually identical but with no alpha blending left to seam. */
+  background: #141414;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 28px 32px;
