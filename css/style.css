@@ -953,7 +953,7 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: #000;
   z-index: 100;
   justify-content: center;
   align-items: flex-start;
@@ -1379,6 +1379,7 @@ img.modal-gallery-image {
 
   .modal-close {
     align-self: flex-start;
+    order: -1;
   }
 
   .modal-visit-link {
