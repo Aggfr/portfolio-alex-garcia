@@ -83,6 +83,59 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------
+     5. Nav bar: highlight the active menu item depending on the
+        current page / section in view
+     ------------------------------------------------------------ */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-bar-ul a'));
+
+  function setActiveNavLink(matchFn) {
+    navLinks.forEach(function (link) {
+      link.classList.toggle('is-active', matchFn(link.getAttribute('href') || ''));
+    });
+  }
+
+  var isProjectPage = /proyecto-/.test(window.location.pathname);
+  var updateActiveSection = function () {};
+
+  if (isProjectPage) {
+    /* Project detail pages live under the Lab/Projects section */
+    setActiveNavLink(function (href) {
+      return /#lab$/.test(href);
+    });
+  } else {
+    var spySections = [
+      { hrefTest: /#approach$/, el: document.getElementById('approach') },
+      { hrefTest: /#lab$/, el: document.getElementById('lab') },
+      { hrefTest: /#schedule$/, el: document.getElementById('schedule') }
+    ].filter(function (entry) {
+      return !!entry.el;
+    });
+
+    updateActiveSection = function () {
+      if (!spySections.length) return;
+      var triggerLine = window.innerHeight * 0.35;
+      var current = null;
+
+      spySections.forEach(function (entry) {
+        var rect = entry.el.getBoundingClientRect();
+        if (rect.top <= triggerLine) {
+          current = entry;
+        }
+      });
+
+      if (!current) {
+        setActiveNavLink(function (href) {
+          return /index\.html$/.test(href);
+        });
+      } else {
+        setActiveNavLink(function (href) {
+          return current.hrefTest.test(href);
+        });
+      }
+    };
+  }
+
+  /* ------------------------------------------------------------
      Scroll loop (throttled with requestAnimationFrame)
      ------------------------------------------------------------ */
   var ticking = false;
@@ -94,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
       updateMarquee();
       updateNavBackground();
       updateStack();
+      updateActiveSection();
       ticking = false;
     });
   }
