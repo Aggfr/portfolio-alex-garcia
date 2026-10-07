@@ -200,6 +200,14 @@ body {
   overflow: hidden;
 }
 
+/* Used on the project pages (AI-assisted builds, The Knot Worldwide,
+   Hellotickets) only: the waves sit behind body copy on those pages,
+   so they're dimmed down to stay decorative instead of competing
+   with reading. The home page's own instance is left untouched. */
+.particles-container--dimmed {
+  opacity: 0.4;
+}
+
 /* ============================================================
    Reveal-on-scroll helper
    ============================================================ */
